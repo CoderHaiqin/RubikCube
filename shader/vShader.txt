@@ -1,0 +1,25 @@
+#version 330 core
+
+layout (location = 0) in vec2 aPos;
+layout (location = 1) in vec3 position;
+layout (location = 2) in vec4 tex;
+layout (location = 3) in vec3 wayLine;
+layout (location = 4) in vec3 direction;
+
+out vec2 TexCoords;
+out vec4 debug;
+
+uniform mat4 perspective;
+uniform mat4 camera;
+
+void main()
+{
+    vec3 a = 0.95f*cross(wayLine, direction);
+    vec3 b = 0.95f*direction;
+    
+    vec3 result= position + (0.5f - aPos.x) * a + (0.5f - aPos.y) * b;
+    
+    TexCoords = vec2(tex.x + aPos.x * tex.z, tex.y + aPos.y * tex.w);
+    debug = vec4(result, 1.0f);
+    gl_Position = perspective * camera * vec4(result, 1.0f);
+}
