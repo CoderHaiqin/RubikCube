@@ -10,7 +10,7 @@ public:
 	glm::vec3 position;
 	glm::vec2 angle;
 
-	void process(bool* keys);
+	void process(bool* keys, double xoffset, double yoffset);
 
 	void draw(Render& render);
 };

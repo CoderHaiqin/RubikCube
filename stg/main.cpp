@@ -12,6 +12,7 @@
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void p_sleep(double seconds);
 
 int main()
@@ -23,6 +24,7 @@ int main()
 
     GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Test", NULL, NULL);
     glfwSetKeyCallback(window, key_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
 
     if (window == NULL)
     {
@@ -38,6 +40,8 @@ int main()
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
+
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     double time = 0.0;
     double frame_time = 0.0;
@@ -131,4 +135,31 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
             Game::getInstance().keys[key] = GL_FALSE;
         
     }
+}
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    static double lastX = 0;
+    static double lastY = 0;
+    static bool firstMouse = true;
+    static double sensitivity = 1.0 / 128;
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos;
+    lastX = xpos;
+    lastY = ypos;
+
+
+    xoffset *= sensitivity;
+    yoffset *= sensitivity;
+
+    Game::getInstance().xoffset = xoffset;
+    Game::getInstance().yoffset = yoffset;
+
 }

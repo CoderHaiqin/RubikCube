@@ -15,6 +15,9 @@ Game::Game() : shader("../shader/vShader.txt", "../shader/fShader.txt"), render(
 	glEnable(GL_DEPTH_TEST);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	xoffset = 0;
+	yoffset = 0;
+
 	rubikCube.initCube();
 }
 
@@ -32,9 +35,10 @@ void Game::init()
 
 void Game::process()
 {
-	camera.process(keys);
+	camera.process(keys, xoffset, yoffset);
 
-
+	xoffset = 0;
+	yoffset = 0;
 }
 
 void Game::draw()

@@ -5,14 +5,14 @@ Camera::Camera() {
 	angle = glm::vec2(glm::radians(0.0f), glm::radians(180.0f));
 }
 
-void Camera::process(bool* keys) {
+void Camera::process(bool* keys, double xoffset, double yoffset) {
 	
 	if (keys[GLFW_KEY_W]) {
-		glm::vec3 front = 0.1f * glm::vec3(sin(angle.y) * cos(angle.x), sin(angle.y) * sin(angle.x), cos(angle.y));
+		glm::vec3 front = 0.1f * glm::vec3(cos(angle.x), sin(angle.x), 0.0f);
 		position += front;
 	}
 	if (keys[GLFW_KEY_S]) {
-		glm::vec3 front = 0.1f * glm::vec3(sin(angle.y) * cos(angle.x), sin(angle.y) * sin(angle.x), cos(angle.y));
+		glm::vec3 front = 0.1f * glm::vec3(cos(angle.x), sin(angle.x), 0.0f);
 		position -= front;
 	}
 	if (keys[GLFW_KEY_A]) {
@@ -22,6 +22,14 @@ void Camera::process(bool* keys) {
 	if (keys[GLFW_KEY_D]) {
 		glm::vec3 direction = 0.1f * glm::vec3(sin(angle.x), -cos(angle.x), 0.0f);
 		position += direction;
+	}
+	if (keys[GLFW_KEY_SPACE]) {
+		glm::vec3 direction = 0.1f * glm::vec3(0.0f, 0.0f, 1.0f);
+		position += direction;
+	}
+	if (keys[GLFW_KEY_LEFT_SHIFT]) {
+		glm::vec3 direction = 0.1f * glm::vec3(0.0f, 0.0f, 1.0f);
+		position -= direction;
 	}
 
 	if (keys[GLFW_KEY_UP]) {
@@ -51,6 +59,9 @@ void Camera::process(bool* keys) {
 			angle.x = glm::radians(360.0f);
 		}
 	}
+
+	angle.x -= xoffset;
+	angle.y -= yoffset;
 }
 
 void Camera::draw(Render& render) {

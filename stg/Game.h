@@ -23,6 +23,8 @@ public:
 	static Game& getInstance();
 
 	bool keys[1024];
+	double xoffset;
+	double yoffset;
 
 	void init();
 	void process();
