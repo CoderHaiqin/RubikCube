@@ -1,8 +1,7 @@
 #pragma once
 #include "Render.h"
-#include "Square.h"
-#include "Cube.h"
 #include "Camera.h"
+#include "RubikCube.h"
 
 #include <lua.hpp>
 #include <mutex>
@@ -15,15 +14,9 @@ private:
 	Shader shader;
 	Render render;
 
-
 	Camera camera;
 
-	Cube cubes[27];
-	int cubeTable[3][3][3];
-
-	void initCube();
-
-	void rotate(char axis, int direction, int n);
+	RubikCube rubikCube;
 
 public:
 	Game();
@@ -33,7 +26,6 @@ public:
 
 	void init();
 	void process();
-
 
 	void draw();
 

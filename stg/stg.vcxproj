@@ -24,6 +24,7 @@
     <ProjectGuid>{889083c4-2688-4461-b2f3-2a7db7367a41}</ProjectGuid>
     <RootNamespace>stg</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>RubikCube</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -155,6 +156,7 @@
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Rotation.cpp" />
+    <ClCompile Include="RubikCube.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -167,6 +169,7 @@
     <ClInclude Include="Render.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Rotation.h" />
+    <ClInclude Include="RubikCube.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="Texture.h" />
